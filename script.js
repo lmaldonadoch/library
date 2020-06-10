@@ -18,8 +18,7 @@ function addBookToLibrary() {
 }
 
 function deleteBookFromLibrary(bookId) {
-  bookId = bookId.id;
-  console.log(bookId);
+  // console.log(bookId);
 }
 
 var render = function (arr, node) {
@@ -34,21 +33,22 @@ var render = function (arr, node) {
     div.appendChild(para);
     div.appendChild(btn);
     btn.setAttribute("id", "delete");
-    btn.setAttribute("data", `book-${index}`);
+    btn.setAttribute("data", `${index}`);
     btn.setAttribute("class", "books-button");
     // btn.addEventListener("click", deleteBookFromLibrary(div));
     document.getElementById("main").appendChild(div);
   });
 };
 
-let buttons = document.getElementsByClassName("books-button");
-
-let array = Array.from(buttons);
-
-console.log(array);
-
-for (let i = 0; i < buttons.length; i++) {
-  console.log(buttons[i]);
-}
-
 render(myLibrary, document.querySelector("#main"));
+
+const buttons = document.getElementsByClassName("books-button");
+
+console.log(buttons);
+
+[...buttons].forEach((button) => {
+  console.log(button);
+  button.addEventListener("click", function (button) {
+    console.log(button.target.attributes.data.value);
+  });
+});
