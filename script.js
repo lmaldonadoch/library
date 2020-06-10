@@ -17,6 +17,11 @@ function addBookToLibrary() {
   }
 }
 
+function deleteBookFromLibrary(bookId) {
+  bookId = bookId.id
+  console.log(bookId)
+}
+
 var render = function (arr, node) {
   arr.forEach((book, index) => {
     let div = document.createElement("DIV");
@@ -28,6 +33,7 @@ var render = function (arr, node) {
     div.appendChild(para);
     div.appendChild(btn);
     btn.setAttribute("value", `book-${index}`);
+    btn.addEventListener('click', deleteBookFromLibrary(div), true);
     document.getElementById("main").appendChild(div);
   });
 };
