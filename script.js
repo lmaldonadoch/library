@@ -18,8 +18,8 @@ function addBookToLibrary() {
 }
 
 function deleteBookFromLibrary(bookId) {
-  bookId = bookId.id
-  console.log(bookId)
+  bookId = bookId.id;
+  console.log(bookId);
 }
 
 var render = function (arr, node) {
@@ -32,10 +32,17 @@ var render = function (arr, node) {
     div.setAttribute("id", `book-${index}`);
     div.appendChild(para);
     div.appendChild(btn);
-    btn.setAttribute("value", `book-${index}`);
-    btn.addEventListener('click', deleteBookFromLibrary(div), true);
+    btn.setAttribute("class", "delete");
+    btn.setAttribute("data", `${index}`);
+    // btn.addEventListener("click", deleteBookFromLibrary(div));
     document.getElementById("main").appendChild(div);
   });
 };
+
+var buttons = document.getElementsByClassName("delete").item(0);
+console.log(buttons);
+for (let i = 0; i < buttons.length; i++) {
+  console.log(buttons[i]);
+}
 
 render(myLibrary, document.querySelector("#main"));
