@@ -9,7 +9,7 @@ function addBookToLibrary() {
 }
 
 var render = function (template, node) {
-  node.innerHTML = template;
+  node.innerHTML = template.join(" ");
 };
 
 var template = [];
@@ -17,4 +17,7 @@ var template = [];
 myLibrary.forEach((book) => {
   template.push(`<p>${book}</p>`);
 });
+
+console.log(template);
+
 render(template, document.querySelector("#main"));
