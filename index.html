@@ -7,7 +7,24 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="main">
+    <div id="main"></div>
+
+    <div class="form_wrapper">
+      <form id="addbook" style="display: none;">
+        <label for="title" class="title">Book Title</label>
+        <input type="text" class="title" />
+
+        <label for="title" class="title">Author</label>
+        <input type="text" class="title" />
+
+        <label for="title" class="title">Number of Pages</label>
+        <input type="number" class="title" />
+
+        <label for="title" class="title">Have you read this book?</label>
+        <input type="checkbox" class="title" />
+
+        <input type="submit" id="submit" />
+      </form>
     </div>
     <button onclick="addBookToLibrary()">Add a new book</button>
   </body>
