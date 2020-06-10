@@ -30,17 +30,23 @@ var render = function (arr, node) {
     para.innerHTML = book;
     btn.innerHTML = "Delete";
     div.setAttribute("id", `book-${index}`);
+    div.setAttribute("class", "books");
     div.appendChild(para);
     div.appendChild(btn);
-    btn.setAttribute("class", "delete");
-    btn.setAttribute("data", `${index}`);
+    btn.setAttribute("id", "delete");
+    btn.setAttribute("data", `book-${index}`);
+    btn.setAttribute("class", "books-button");
     // btn.addEventListener("click", deleteBookFromLibrary(div));
     document.getElementById("main").appendChild(div);
   });
 };
 
-var buttons = document.getElementsByClassName("delete").item(0);
-console.log(buttons);
+let buttons = document.getElementsByClassName("books-button");
+
+let array = Array.from(buttons);
+
+console.log(array);
+
 for (let i = 0; i < buttons.length; i++) {
   console.log(buttons[i]);
 }
