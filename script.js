@@ -1,7 +1,5 @@
 let myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-if (myLibrary) {
-  console.log(myLibrary);
-} else {
+if (myLibrary == null) {
   myLibrary = [];
 }
 
@@ -12,10 +10,13 @@ function Book(title, author, pages, read) {
   (this.read = read);
 }
 
+const save = function save(array) {
+  localStorage.setItem('myLibrary', JSON.stringify(array));
+};
+
 function addBookToLibrary() {
-  // do stuff here
-  form = document.getElementById('addbook');
-  newBook = new Book(
+  const form = document.getElementById('addbook');
+  const newBook = new Book(
     form[0].value,
     form[1].value,
     form[2].value,
@@ -34,11 +35,7 @@ function showForm() {
   }
 }
 
-var save = function (array) {
-  localStorage.setItem('myLibrary', JSON.stringify(array));
-};
-
-const deleteBookFromLibrary = function (book) {
+const deleteBookFromLibrary = function deleteBookFromLibrary(book) {
   myLibrary[book.target.attributes.data.value] = null;
   const new_libr = [];
   myLibrary.forEach((elem) => {
@@ -47,14 +44,11 @@ const deleteBookFromLibrary = function (book) {
     }
   });
 
-  console.log(new_libr);
-
   save(new_libr);
   location.reload();
 };
 
-const changeReadStatus = function (book) {
-  console.log(myLibrary[book.target.attributes.data.value]);
+const changeReadStatus = function changeReadStatus(book) {
   if (myLibrary[book.target.attributes.data.value].read == true) {
     myLibrary[book.target.attributes.data.value].read = false;
   } else {
@@ -64,7 +58,7 @@ const changeReadStatus = function (book) {
   location.reload();
 };
 
-const render = function (arr, node) {
+const render = function render(arr, node) {
   arr.forEach((book, index) => {
     const div = document.createElement('DIV');
     const para = document.createElement('P');
@@ -100,15 +94,13 @@ render(myLibrary, document.querySelector('#main'));
 
 const buttons = document.getElementsByClassName('books-button');
 const buttonsRead = document.getElementsByClassName('read-button');
-
-console.log(myLibrary);
+const btnShow = document.getElementById('showForm');
+btnShow.addEventListener('click', showForm);
 
 [...buttons].forEach((button) => {
-  console.log(button);
   button.addEventListener('click', deleteBookFromLibrary);
 });
 
 [...buttonsRead].forEach((button) => {
-  console.log(button);
   button.addEventListener('click', changeReadStatus);
 });
