@@ -1,4 +1,4 @@
-# Project: Library
+# library
 
 ## Project specifications
 We extended the ‘Book’ example from the previous lessons and turn it into a small Library app.
