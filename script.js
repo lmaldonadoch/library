@@ -1,11 +1,9 @@
-let myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
-if(myLibrary) {
+let myLibrary = JSON.parse(localStorage.getItem("myLibrary"));
+if (myLibrary) {
   console.log(myLibrary);
 } else {
   myLibrary = [];
 }
-
-
 
 function Book(title, author, pages, read) {
   (this.title = title),
@@ -21,7 +19,7 @@ function addBookToLibrary() {
     form[0].value,
     form[1].value,
     form[2].value,
-    form[3].value
+    form[3].checked
   );
   myLibrary.push(newBook);
   save(myLibrary);
@@ -41,7 +39,12 @@ var save = function (array) {
 };
 
 var deleteBookFromLibrary = function (book) {
-  console.log(book.target.attributes.data.value);
+  delete myLibrary[book];
+  myLibrary = myLibrary.filter((elem) => {
+    elem != null;
+  });
+
+  save(myLibrary);
 };
 
 var render = function (arr, node) {
@@ -51,7 +54,7 @@ var render = function (arr, node) {
     let btn = document.createElement("BUTTON");
     para.innerHTML = `${book.title} was written by ${book.author}
     and contains ${book.pages} pages.`;
-    if(book.read == "on") {
+    if (book.read == true) {
       para.innerHTML = para.innerHTML + " You already read this book.";
     } else {
       para.innerHTML = para.innerHTML + " You haven't read this book.";
