@@ -1,4 +1,11 @@
-let myLibrary = [];
+let myLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+if(myLibrary) {
+  console.log(myLibrary);
+} else {
+  myLibrary = [];
+}
+
+
 
 function Book(title, author, pages, read) {
   (this.title = title),
@@ -16,7 +23,6 @@ function addBookToLibrary() {
     form[2].value,
     form[3].value
   );
-  console.log(newBook);
   myLibrary.push(newBook);
   save(myLibrary);
 }
@@ -31,7 +37,7 @@ function showForm() {
 }
 
 var save = function (array) {
-  localStorage.setItem("myLibrary", array);
+  localStorage.setItem("myLibrary", JSON.stringify(array));
 };
 
 var deleteBookFromLibrary = function (book) {
@@ -43,7 +49,13 @@ var render = function (arr, node) {
     let div = document.createElement("DIV");
     let para = document.createElement("P");
     let btn = document.createElement("BUTTON");
-    para.innerHTML = book;
+    para.innerHTML = `${book.title} was written by ${book.author}
+    and contains ${book.pages} pages.`;
+    if(book.read == "on") {
+      para.innerHTML = para.innerHTML + " You already read this book.";
+    } else {
+      para.innerHTML = para.innerHTML + " You haven't read this book.";
+    }
     btn.innerHTML = "Delete";
     div.setAttribute("id", `book-${index}`);
     div.setAttribute("class", "books");
