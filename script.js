@@ -4,10 +4,10 @@ if (myLibrary == null) {
 }
 
 function Book(title, author, pages, read) {
-  (this.title = title),
-  (this.author = author),
-  (this.pages = pages),
-  (this.read = read);
+  this.title = title,
+    this.author = author,
+    this.pages = pages,
+    this.read = read;
 }
 
 const save = function save(array) {
@@ -28,7 +28,7 @@ function addBookToLibrary() {
 
 function showForm() {
   const addBook = document.getElementById('addbook');
-  if (addBook.style.display == 'none') {
+  if (addBook.style.display === 'none') {
     addBook.style.display = 'flex';
   } else {
     addBook.style.display = 'none';
@@ -37,28 +37,28 @@ function showForm() {
 
 const deleteBookFromLibrary = function deleteBookFromLibrary(book) {
   myLibrary[book.target.attributes.data.value] = null;
-  const new_libr = [];
+  const newLibr = [];
   myLibrary.forEach((elem) => {
     if (elem != null) {
-      new_libr.push(elem);
+      newLibr.push(elem);
     }
   });
 
-  save(new_libr);
-  location.reload();
+  save(newLibr);
+  window.location.reload();
 };
 
 const changeReadStatus = function changeReadStatus(book) {
-  if (myLibrary[book.target.attributes.data.value].read == true) {
+  if (myLibrary[book.target.attributes.data.value].read === true) {
     myLibrary[book.target.attributes.data.value].read = false;
   } else {
     myLibrary[book.target.attributes.data.value].read = true;
   }
   save(myLibrary);
-  location.reload();
+  window.location.reload();
 };
 
-const render = function render(arr, node) {
+const render = function render(arr) {
   arr.forEach((book, index) => {
     const div = document.createElement('DIV');
     const para = document.createElement('P');
@@ -66,7 +66,7 @@ const render = function render(arr, node) {
     const btnRead = document.createElement('BUTTON');
     para.innerHTML = `${book.title} was written by ${book.author}
     and contains ${book.pages} pages.`;
-    if (book.read == true) {
+    if (book.read === true) {
       para.innerHTML += ' You already read this book.';
     } else {
       para.innerHTML += " You haven't read this book.";
@@ -96,6 +96,8 @@ const buttons = document.getElementsByClassName('books-button');
 const buttonsRead = document.getElementsByClassName('read-button');
 const btnShow = document.getElementById('showForm');
 btnShow.addEventListener('click', showForm);
+const btnSubmit = document.getElementById('submit');
+btnSubmit.addEventListener('click', addBookToLibrary);
 
 [...buttons].forEach((button) => {
   button.addEventListener('click', deleteBookFromLibrary);
