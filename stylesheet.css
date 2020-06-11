@@ -1,0 +1,23 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+  flex-direction: column;
+}
+
+form {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox-container {
+  margin: 5px 0;
+}
+
+.showForm {
+  width: 150px;
+  margin-top: 1.5rem;
+}
