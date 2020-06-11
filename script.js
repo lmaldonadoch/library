@@ -4,10 +4,10 @@ if (myLibrary == null) {
 }
 
 function Book(title, author, pages, read) {
-  this.title = title,
-    this.author = author,
-    this.pages = pages,
-    this.read = read;
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
 }
 
 const save = function save(array) {
