@@ -1,4 +1,4 @@
-let myLibrary = ["The Lord of the Rings", "HP", "Narnia"];
+let myLibrary = [];
 
 function Book(title, author, pages, read) {
   (this.title = title),
@@ -9,6 +9,19 @@ function Book(title, author, pages, read) {
 
 function addBookToLibrary() {
   // do stuff here
+  form = document.getElementById("addbook");
+  newBook = new Book(
+    form[0].value,
+    form[1].value,
+    form[2].value,
+    form[3].value
+  );
+  console.log(newBook);
+  myLibrary.push(newBook);
+  save(myLibrary);
+}
+
+function showForm() {
   var addBook = document.getElementById("addbook");
   if (addBook.style.display == "none") {
     addBook.style.display = "flex";
@@ -17,9 +30,13 @@ function addBookToLibrary() {
   }
 }
 
-function deleteBookFromLibrary(bookId) {
-  // console.log(bookId);
-}
+var save = function (array) {
+  localStorage.setItem("myLibrary", array);
+};
+
+var deleteBookFromLibrary = function (book) {
+  console.log(book.target.attributes.data.value);
+};
 
 var render = function (arr, node) {
   arr.forEach((book, index) => {
@@ -48,7 +65,5 @@ console.log(buttons);
 
 [...buttons].forEach((button) => {
   console.log(button);
-  button.addEventListener("click", function (button) {
-    console.log(button.target.attributes.data.value);
-  });
+  button.addEventListener("click", deleteBookFromLibrary);
 });
